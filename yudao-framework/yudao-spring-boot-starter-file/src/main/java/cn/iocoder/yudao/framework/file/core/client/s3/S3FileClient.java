@@ -5,8 +5,12 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
 import cn.iocoder.yudao.framework.file.core.client.AbstractFileClient;
 import io.minio.*;
+import io.minio.messages.CannedAcl;
+import io.minio.messages.UserMetadata;
 
 import java.io.ByteArrayInputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import static cn.iocoder.yudao.framework.file.core.client.s3.S3FileClientConfig.ENDPOINT_ALIYUN;
 import static cn.iocoder.yudao.framework.file.core.client.s3.S3FileClientConfig.ENDPOINT_TENCENT;
@@ -33,10 +37,15 @@ public class S3FileClient extends AbstractFileClient<S3FileClientConfig> {
             config.setDomain(buildDomain());
         }
         // 初始化客户端
+        //client = MinioClient.builder()
+        //        .endpoint(buildEndpointURL()) // Endpoint URL
+        //        .region(buildRegion()) // Region
+        //        .credentials(config.getAccessKey(), config.getAccessSecret()) // 认证密钥
+        //        .build();
         client = MinioClient.builder()
-                .endpoint(buildEndpointURL()) // Endpoint URL
-                .region(buildRegion()) // Region
-                .credentials(config.getAccessKey(), config.getAccessSecret()) // 认证密钥
+                .endpoint("http://10.165.8.176:8080") // Endpoint URL
+                //.region(buildRegion()) // Region
+                .credentials("DUADLSAJ7P7PADES9FWJ", "RdJKBDkJZslrgON3WgsIDzaKpBJvDRd37xwRAOd0") // 认证密钥
                 .build();
     }
 
@@ -90,14 +99,18 @@ public class S3FileClient extends AbstractFileClient<S3FileClientConfig> {
     @Override
     public String upload(byte[] content, String path, String type) throws Exception {
         // 执行上传
+        Map<String, String> userMetadata = new HashMap<>();
+        userMetadata.put("x-amz-acl", "public-read");
         client.putObject(PutObjectArgs.builder()
-                .bucket(config.getBucket()) // bucket 必须传递
+                .bucket("ruoyi-vue-pro") // bucket 必须传递
+                //.bucket(config.getBucket()) // bucket 必须传递
                 .contentType(type)
                 .object(path) // 相对路径作为 key
                 .stream(new ByteArrayInputStream(content), content.length, -1) // 文件内容
+                .headers(userMetadata)
                 .build());
         // 拼接返回路径
-        return config.getDomain() + "/" + path;
+        return config.getDomain() + "/ruoyi-vue-pro/" + path;
     }
 
     @Override

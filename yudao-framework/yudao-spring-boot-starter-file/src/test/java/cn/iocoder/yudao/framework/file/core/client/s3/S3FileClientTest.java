@@ -11,6 +11,22 @@ import javax.validation.Validation;
 public class S3FileClientTest {
 
     @Test
+    //@Disabled // MinIO，如果要集成测试，可以注释本行
+    public void testYSIO() throws Exception {
+        S3FileClientConfig config = new S3FileClientConfig();
+        // 配置成你自己的
+        config.setAccessKey("DUADLSAJ7P7PADES9FWJ");
+        config.setAccessSecret("RdJKBDkJZslrgON3WgsIDzaKpBJvDRd37xwRAOd0");
+        config.setBucket("test04");
+        config.setDomain(null);
+        // 默认 9000 endpoint
+        config.setEndpoint("http://10.165.8.176:8080");
+
+        // 执行上传
+        testExecuteUpload(config);
+    }
+
+    @Test
     @Disabled // MinIO，如果要集成测试，可以注释本行
     public void testMinIO() throws Exception {
         S3FileClientConfig config = new S3FileClientConfig();
@@ -25,6 +41,7 @@ public class S3FileClientTest {
         // 执行上传
         testExecuteUpload(config);
     }
+
 
     @Test
     @Disabled // 阿里云 OSS，如果要集成测试，可以注释本行
@@ -59,7 +76,7 @@ public class S3FileClientTest {
     }
 
     @Test
-    @Disabled // 七牛云存储，如果要集成测试，可以注释本行
+    @Disabled // 七牛云存储，如F本行
     public void testQiniu() throws Exception {
         S3FileClientConfig config = new S3FileClientConfig();
         // 配置成你自己的

@@ -5,16 +5,16 @@ tenant-id: {{adminTenentId}}
 Authorization: Bearer {{token}}
 
 {
-  "name": "S3 - 七牛云",
+  "name": "S3 - test",
   "remark": "",
-  "storage": 20,
+  "storage": 0,
   "config": {
-    "accessKey": "b7yvuhBSAGjmtPhMFcn9iMOxUOY_I06cA_p0ZUx8",
-    "accessSecret": "kXM1l5ia1RvSX3QaOEcwI3RLz3Y2rmNszWonKZtP",
+    "accessKey": "DUADLSAJ7P7PADES9FWJ",
+    "accessSecret": "RdJKBDkJZslrgON3WgsIDzaKpBJvDRd37xwRAOd0",
     "bucket": "ruoyi-vue-pro",
-    "endpoint": "s3-cn-south-1.qiniucs.com",
-    "domain": "http://test.yudao.iocoder.cn",
-    "region": "oss-cn-beijing"
+    "endpoint": "10.165.8.176:8080",
+    "domain": "http://10.165.8.176:8080",
+    "region": ""
   }
 }
 
@@ -26,15 +26,15 @@ Authorization: Bearer {{token}}
 
 {
   "id": 2,
-  "name": "S3 - 七牛云",
+  "name": "S3 - test",
   "remark": "",
   "config": {
-    "accessKey": "b7yvuhBSAGjmtPhMFcn9iMOxUOY_I06cA_p0ZUx8",
-    "accessSecret": "kXM1l5ia1RvSX3QaOEcwI3RLz3Y2rmNszWonKZtP",
+    "accessKey": "DUADLSAJ7P7PADES9FWJ",
+    "accessSecret": "RdJKBDkJZslrgON3WgsIDzaKpBJvDRd37xwRAOd0",
     "bucket": "ruoyi-vue-pro",
-    "endpoint": "s3-cn-south-1.qiniucs.com",
-    "domain": "http://test.yudao.iocoder.cn",
-    "region": "oss-cn-beijing"
+    "endpoint": "10.165.8.176:8080",
+    "domain": "http://10.165.8.176:8080",
+    "region": ""
   }
 }
 
